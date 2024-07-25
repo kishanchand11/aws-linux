@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to create VPC, public subnet, and EC2 instance
+
+Parameters:
+  VpcCIDR:
+    Type: String
+    Default: "10.0.0.0/16"
+    Description: CIDR block for the VPC. Default is 10.0.0.0/16
+
+Resources:
+  MyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: "10.0.0.0/24"
+      MapPublicIpOnLaunch: true
+
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-1234567890abcdef0  # Replace with your desired Amazon Linux 2 AMI ID
+      SubnetId: !Ref PublicSubnet
+    
+Outputs:
+  InstanceId:
+    Description: Instance ID of the EC2 instance created
+    Value: !Ref MyEC2Instance
+  PublicIP:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt MyEC2Instance.PublicIp
