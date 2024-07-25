@@ -1,0 +1,35 @@
+# Check the disk space usage of all mounted filesystems in a human-readable format
+df -h
+
+# List information about block devices in a tree-like format
+lsblk
+
+# Check the filesystem type of the device /dev/xvdbb  (here xvdbb is the device(volumename) will be different for every ebs volume)
+file -s /dev/xvdbb
+
+# Check the filesystem type of the device /dev/xvdbb with superuser privileges
+sudo file -s /dev/xvdbb
+
+# Create a new XFS filesystem on the device /dev/xvdbb
+# mkfs -t xfs /dev/xvdbb
+
+# Create a new XFS filesystem on the device /dev/xvdbb with superuser privileges
+# sudo mkfs -t xfs /dev/xvdbb
+
+# Print the current working directory
+pwd
+
+# Create a new directory named 'data' in the current directory with superuser privileges
+sudo mkdir data
+
+# Mount the device /dev/xvdbb onto the directory /home/ubuntu/data(directory path u wanna mount)
+# sudo mount /dev/xvdbb /home/ubuntu/data
+
+# Display disk space usage after mounting the filesystem
+df -h
+
+# There's a typo here; the correct command is 'sudo umount /dev/xvdbb' to unmount the filesystem
+# sudo umount /dev/xvdbb /home/ubuntu/data
+
+# Display command history
+history
